@@ -4,9 +4,19 @@ import axios from "axios";
 import { CheckField } from "./CheckField";
 import { Graph } from "./Graph";
 
+const Styles = {
+    graph: {
+        padding:"10px",
+    },
+    label: {
+        fontSize: "20px",
+        padding: "0.5rem, 2rem",
+        borderLeft: "4px solid #000",
+        marginLeft: "10pt"
+    }
+}
 
-
-export const Main = (props) => {
+export const Main = () => {
     const [prefectures, setPrefectures] = useState(null);
     const [prefPopulation, setPrefPopulation] = useState([]);
     
@@ -19,7 +29,7 @@ export const Main = (props) => {
             .get(url, { headers: { "X-API-KEY": process.env.REACT_APP_API_KEY } })
             .then((result) => {
                 setPrefectures(result.data);
-                console.log(result.data);
+                // console.log(result.data);
             })
             .catch((error) => {})
     }, []);
@@ -45,7 +55,7 @@ export const Main = (props) => {
                 })
 
                 setPrefPopulation(copy_prefPopulation);
-                console.log(prefPopulation);
+                // console.log(prefPopulation);
             })
             .catch((error) => {})
         
@@ -67,13 +77,14 @@ export const Main = (props) => {
     
     return (
         <main>
-            <h2>都道府県</h2>
+            <h2 style={Styles.label}>都道府県</h2>
             {prefectures && (
                 <CheckField
                     prefectures={prefectures.result}
                     onChange={handleClickCheck}
                 />
             )}
+            <h2 style={Styles.label}>人口推移グラフ</h2>
             {prefPopulation && (
                 <Graph
                     populationData={prefPopulation}
