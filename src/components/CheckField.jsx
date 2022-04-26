@@ -9,7 +9,13 @@ export const CheckField = ({ prefectures,onChange }) => {
                     <input
                         type="checkbox"
                         name="Prefecture name"
-                        onChange={onChange}
+                        onChange={(event) => {
+                            onChange(
+                                prefecture.prefName,
+                                prefecture.prefCode,
+                                event.target.checked
+                            )
+                        }}
                         id={"checkbox" + prefecture.prefCode}
                     />
                     <label
