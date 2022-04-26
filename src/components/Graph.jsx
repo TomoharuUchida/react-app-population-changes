@@ -3,15 +3,19 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 
+const Styles = {
+    graph: {
+        padding: "12px",
+    },
+};
+
 export const Graph = ({populationData}) => {
-    console.log(populationData);
+    // console.log(populationData);
     let series = [];
     let categories = [];
 
     for (let p of populationData) {
         let data = [];
-        // data.push(p.value);
-        // categories.push(String(p.year));
         
         for (let pd of p.data) {
             data.push(pd.value);
@@ -50,7 +54,7 @@ export const Graph = ({populationData}) => {
 
 
     return (
-        <div>グラフ
+        <div style={Styles.graph}>
             <HighchartsReact highcharts= {Highcharts} options={options}/>
         </div>
     )
