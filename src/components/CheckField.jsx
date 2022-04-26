@@ -1,7 +1,6 @@
-import React,{useState,useEffect} from "react";
-import axios from "axios";
+import React from "react";
 
-export const CheckField = ({ prefectures }) => {
+export const CheckField = ({ prefectures,onChange }) => {
     
     return (
         <div>
@@ -10,6 +9,7 @@ export const CheckField = ({ prefectures }) => {
                     <input
                         type="checkbox"
                         name="Prefecture name"
+                        onChange={onChange}
                         id={"checkbox" + prefecture.prefCode}
                     />
                     <label
